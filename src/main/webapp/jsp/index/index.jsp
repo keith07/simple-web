@@ -1,10 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<META NAME ="keywords" CONTENT="leisure time at sunshine coast,keith">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Keith's leisure time at sunshine coast</title>
-<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/static/css/style.css" />
 </head>
 <body>
 <div id="wrap">
@@ -49,7 +53,7 @@
       <div class="main fr">
         <div id="text">
           <h2>My first note</h2>
-          <p> <img src="images/img.jpg" alt="" />Just do something<br/>
+          <p> <img src="${ctx}/static/_img/img.jpg" alt="" />Just do something<br/>
             <br/>
             1In the beginning God created the heavens and the earth.<br/> 
 						2Now the earth was formless and empty, darkness was over the surface of the deep, and the Spirit of God was hovering over the waters. <br/>

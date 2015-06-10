@@ -19,7 +19,7 @@
       </div>
       <ul id="nav">
         <li><a href="#">Home</a></li>
-        <li><a href="#">About us</a></li>
+        <li><a href="${ctx}/jsp/chart/dashboard.jsp">About us</a></li>
         <li><a href="#">Production</a></li>
         <li><a href="#">Contact</a></li>
       </ul>

@@ -2,6 +2,10 @@ package edu.keith.mvc.chart.bean;
 
 import java.util.List;
 
+/**
+ * @author keith
+ * 一个查询语句，一类series
+ */
 public class SeriesBean {
 	
 	private ChartBean chartBean;

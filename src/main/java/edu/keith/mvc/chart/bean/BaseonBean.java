@@ -4,7 +4,7 @@ package edu.keith.mvc.chart.bean;
  * @author keith
  * 对应查询字段
  */
-public class BaseonBean {
+public class BaseonBean implements IFieldBean{
 
 	/**
 	 * 对应数据库的字段名

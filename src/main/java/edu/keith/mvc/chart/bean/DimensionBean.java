@@ -4,7 +4,7 @@ package edu.keith.mvc.chart.bean;
  * @author keith
  * 对应sql中的group by字段
  */
-public class DimensionBean {
+public class DimensionBean implements IFieldBean {
 
 	/**
 	 * 数据库字段名

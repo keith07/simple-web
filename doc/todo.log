@@ -1,0 +1,5 @@
+1.用图表形式展示下面的查询结果
+SELECT COUNT(sid) counts,ACTION ACTION,actor actor
+FROM actor_log LOG
+GROUP BY ACTION,actor
+ORDER BY ACTION,actor

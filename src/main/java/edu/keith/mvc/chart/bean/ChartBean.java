@@ -1,6 +1,11 @@
 package edu.keith.mvc.chart.bean;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import edu.keith.mvc.chart.conf.BaseonBeanConf;
+import edu.keith.mvc.chart.conf.DimensionBeanConf;
+import edu.keith.mvc.chart.conf.SeriesBeanConf;
 
 public class ChartBean {
 
@@ -33,7 +38,11 @@ public class ChartBean {
 	 * 可能为指标字段，也可能为维度字段
 	 */
 	private IFieldBean expandBean;
-	
+	/**
+	 * y轴显示字段
+	 */
+	private BaseonBean baseonBean;
+
 	/**
 	 * 排序bean
 	 */
@@ -94,6 +103,14 @@ public class ChartBean {
 	public void setExpandBean(IFieldBean expandBean) {
 		this.expandBean = expandBean;
 	}
+	
+	public BaseonBean getBaseonBean() {
+		return baseonBean;
+	}
+
+	public void setBaseonBean(BaseonBean baseonBean) {
+		this.baseonBean = baseonBean;
+	}
 
 	public BaseonBean getOrderBean() {
 		return orderBean;
@@ -101,5 +118,20 @@ public class ChartBean {
 
 	public void setOrderBean(BaseonBean orderBean) {
 		this.orderBean = orderBean;
+	}
+	
+	public ChartBean withBaseonKey(String key){
+		setBaseonBean(BaseonBeanConf.allBeans.get(key));
+		return this;
+	}
+	public ChartBean withExpandKey(String key){
+		expandBean = BaseonBeanConf.allBeans.get(key);
+		expandBean = expandBean == null ? DimensionBeanConf.beans.get(key) : expandBean;
+		return this;
+	}
+	public ChartBean withSeriesKey(String key){
+		series = series == null ? new ArrayList<SeriesBean>() : series;
+		series.add(SeriesBeanConf.allBeans.get(key));
+		return this;
 	}
 }

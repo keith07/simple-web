@@ -9,7 +9,7 @@ public class ChartBeanConf {
 
 	public static Map<String,ChartBean> allCharts;
 	
-	public static String CHART_BEAN_NAME_ACTION_ACTOR_COUNTS;
+	public static String CHART_BEAN_NAME_ACTION_ACTOR_COUNTS = "actionActorCounts";
 	static{
 		allCharts = new HashMap<String,ChartBean>();
 		ChartBean chart = new ChartBean()
@@ -17,5 +17,14 @@ public class ChartBeanConf {
 			.withExpandKey(DimensionBeanConf.DIMENSION_BEAN_NAME_ACTION)
 			.withSeriesKey(SeriesBeanConf.SERIES_BEAN_KEY_ACTION_COUNTS);
 		allCharts.put(CHART_BEAN_NAME_ACTION_ACTOR_COUNTS, chart);
+	}
+	
+	/**
+	 * 获取注册的ChartBean
+	 * @param name
+	 * @return
+	 */
+	public static ChartBean getChart(String name){
+		return allCharts.get(name);
 	}
 }

@@ -16,17 +16,24 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	private UserDao dao;
 
-	@Override
-	public UserInfo regist(UserBean user) {
+	public UserInfo regist(UserBean userBean) {
 		// TODO Auto-generated method stub
-		return null;
+		if(isNameExisted(userBean.getUserName()))
+			return null;
+		return dao.save(new UserInfo(userBean));
 	}
 
-	@Override
 	public UserInfo login(String userName, String userPass) {
-		// TODO Auto-generated method stub
-		List<UserInfo> ui = dao.findAll();
-		System.out.println(ui.size());
-		return null;
+		List<UserInfo> list = dao.findByName(userName);
+		if(list.size() < 1 || !list.get(0).getUserPass().equals(userPass))
+			return null;
+		return list.get(0);
+	}
+
+	public boolean isNameExisted(String userName) {
+		if(userName == null || "".equals(userName.trim()))
+			return false;
+		List<UserInfo> user = dao.findByName(userName);
+		return user.size() > 0;
 	}
 }

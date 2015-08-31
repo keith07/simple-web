@@ -32,18 +32,18 @@ public class UserInfo implements Serializable {
 	
 	@Id  
     @GeneratedValue(strategy = GenerationType.AUTO) 
-	private String sid;
+	private int sid;
 	@Column(name="user_name")
 	private String userName;
 	@Column(name="user_pass")
 	private String userPass;
-//	@Column(name="is_actived")
-//	@org.hibernate.annotations.Type(type="yes_no")
+	@Column(name="is_actived")
+	@org.hibernate.annotations.Type(type="yes_no")
 	private boolean isActived;
-	public String getSid() {
+	public int getSid() {
 		return sid;
 	}
-	public void setSid(String sid) {
+	public void setSid(int sid) {
 		this.sid = sid;
 	}
 	public String getUserName() {

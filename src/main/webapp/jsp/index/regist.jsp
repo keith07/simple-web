@@ -22,7 +22,7 @@
 			</div>
 			<div class="field">
 				<span class="label">confirm userPass:</span>
-				<input type="password" id="userPass2" name="userPass2">
+				<input type="password" id="confirmPass" name="confirmPass">
 			</div>
 			<div>
 				<input type="submit" name="submit" value="submit">

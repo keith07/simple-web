@@ -2,11 +2,11 @@
 <connection-pool>
 	<proxool>
 		<alias>xml-test</alias>
-		<driver-url>jdbc:mysql://localhost:3306/test</driver-url>
+		<driver-url>jdbc:mysql://192.168.1.5:3306/simpleweb</driver-url>
 		<driver-class>org.gjt.mm.mysql.Driver</driver-class>
 		<driver-properties>
-			<property name="user" value="root"/>
-			<property name="password" value="root123"/>
+			<property name="user" value="keith"/>
+			<property name="password" value="123123"/>
 		</driver-properties>
 		<maximum-connection-count>10</maximum-connection-count>
 		<house-keeping-test-sql>select CURRENT_DATE</house-keeping-test-sql>

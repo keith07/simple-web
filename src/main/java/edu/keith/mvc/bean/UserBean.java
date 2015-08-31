@@ -11,6 +11,7 @@ public class UserBean {
 	}
 	private String userName;
 	private String userPass;
+	private String confirmPass;
 	public String getUserName() {
 		return userName;
 	}
@@ -22,5 +23,11 @@ public class UserBean {
 	}
 	public void setUserPass(String userPass) {
 		this.userPass = userPass;
+	}
+	public String getConfirmPass() {
+		return confirmPass;
+	}
+	public void setConfirmPass(String confirmPass) {
+		this.confirmPass = confirmPass;
 	}
 }

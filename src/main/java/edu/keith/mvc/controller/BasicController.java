@@ -1,8 +1,5 @@
 package edu.keith.mvc.controller;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -22,51 +19,52 @@ public class BasicController {
 	IUserService service;
 	
 	@RequestMapping("/doLogin")
-	public String doLogin(){
-		System.out.println("I'm here");
-		return "index/index";
+	public String doLogin(String userName,String userPass){
+		UserInfo user = service.login(userName, userPass);
+		if(user == null || !user.isActived())
+			return "/index/login";
+		return "redirect:/main/index";
 	}
 	
 	@RequestMapping("/login")
 	public String toLogin(){
-		return "index/login";
+		return "/index/login";
 	}
 	
 	@RequestMapping("/regist")
 	public String regist(){
-		return "index/regist";
+		return "/index/regist";
+	}
+	
+	@RequestMapping("/index")
+	public String index(){
+		return "/index/index";
 	}
 	
 	@RequestMapping("/doRegist")
-	public String doRegist(String userName,String userPass,String userPass2, Map<String,Object> model){
-		System.out.println("I'm doRegist ing...");
-		//TODO
-		if(userPass == null || userPass2 == null || !userPass.equals(userPass2))
-			return "index/regist";
-//		UserBean user = new UserBean();
-//		user.setUserName(userName);
-//		user.setUserPass(userPass);
-		testConn();
-		UserInfo user = service.login(userName, userPass);
-		return user == null ? "index/login" : "index/regist";
+	public String doRegist(UserBean userBean, Map<String,Object> model){
+		if(userBean.getUserPass() == null || userBean.getConfirmPass() == null || !userBean.getUserPass().equals(userBean.getConfirmPass()))
+			return "/index/regist";
+		UserInfo user = service.regist(userBean);
+		return user == null ? "/index/regist" : "redirect:/main/index";
 	}
 	
-	private void testConn(){
-		Connection connection = null;
-		try {
-			Class.forName("org.logicalcobwebs.proxool.ProxoolDriver");
-			connection = DriverManager.getConnection("proxool.xml-test");
-		} catch (Exception e) {
-			System.err.println(e);
-		}finally{
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				if(connection != null)
-					connection = null;
-			}
-		}
-		System.out.println("ok");
-	}
+//	private void testConn(){
+//		Connection connection = null;
+//		try {
+//			Class.forName("org.logicalcobwebs.proxool.ProxoolDriver");
+//			connection = DriverManager.getConnection("proxool.xml-test");
+//		} catch (Exception e) {
+//			System.err.println(e);
+//		}finally{
+//			try {
+//				connection.close();
+//			} catch (SQLException e) {
+//				if(connection != null)
+//					connection = null;
+//			}
+//		}
+//		System.out.println("ok");
+//	}
 
 }

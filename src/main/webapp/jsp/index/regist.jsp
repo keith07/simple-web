@@ -14,7 +14,8 @@
 		<form action="${ctx}/main/doRegist" method="post">
 			<div class="field">
 				<span class="label">userName:</span>
-				<input type="text" id="userName" name="userName">
+				<input type="text" id="userName" name="userName" datatype="s5-16" 
+					ajaxurl="valid.php?myparam1=value1&myparam2=value2" errormsg="昵称至少5个字符,最多16个字符！">
 			</div>
 			<div class="field">
 				<span class="label">userPass:</span>
@@ -31,4 +32,7 @@
 		</form>
 	</div>
 </body>
+<script type="text/javascript">
+$(".form").Validform();
+</script>
 </html>

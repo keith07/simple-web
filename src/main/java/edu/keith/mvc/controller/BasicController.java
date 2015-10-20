@@ -19,10 +19,13 @@ public class BasicController {
 	IUserService service;
 	
 	@RequestMapping("/doLogin")
-	public String doLogin(String userName,String userPass){
+	public String doLogin(String userName,String userPass, Map<String,Object> model){
 		UserInfo user = service.login(userName, userPass);
-		if(user == null || !user.isActived())
+		if(user == null || !user.isActived()){
+			model.put("userName", userName);
+			model.put("errorMsg", "用户名密码不匹配！");
 			return "/index/login";
+		}
 		return "redirect:/main/index";
 	}
 	

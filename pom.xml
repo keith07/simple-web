@@ -116,6 +116,10 @@
 			<groupId>proxool</groupId>
 			<artifactId>proxool-cglib</artifactId>
 		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>redis.clients</groupId> -->
+<!-- 			<artifactId>jedis</artifactId> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>

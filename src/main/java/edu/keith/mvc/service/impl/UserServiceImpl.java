@@ -14,17 +14,18 @@ import edu.keith.mvc.service.IUserService;
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
-	private UserDao dao;
+	private UserDao userDao;
 
 	public UserInfo regist(UserBean userBean) {
-		// TODO Auto-generated method stub
 		if(isNameExisted(userBean.getUserName()))
 			return null;
-		return dao.save(new UserInfo(userBean));
+		UserInfo user = new UserInfo(userBean);
+		userDao.save(user);
+		return user;
 	}
 
 	public UserInfo login(String userName, String userPass) {
-		List<UserInfo> list = dao.findByName(userName);
+		List<UserInfo> list = userDao.findByName(userName);
 		if(list.size() < 1 || !list.get(0).getUserPass().equals(userPass))
 			return null;
 		return list.get(0);
@@ -33,7 +34,7 @@ public class UserServiceImpl implements IUserService {
 	public boolean isNameExisted(String userName) {
 		if(userName == null || "".equals(userName.trim()))
 			return false;
-		List<UserInfo> user = dao.findByName(userName);
+		List<UserInfo> user = userDao.findByName(userName);
 		return user.size() > 0;
 	}
 }

@@ -2,12 +2,12 @@ package edu.keith.mvc.bean;
 
 public class UserBean {
 
-	private String uid;
-	public String getUid() {
-		return uid;
+	private String sid;
+	public String getSid() {
+		return sid;
 	}
-	public void setUid(String uid) {
-		this.uid = uid;
+	public void setSid(String sid) {
+		this.sid = sid;
 	}
 	private String userName;
 	private String userPass;

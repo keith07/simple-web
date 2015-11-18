@@ -20,40 +20,21 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<!-- jpa支持 -->
-	<jpa:repositories base-package="edu.keith.mvc"
-		entity-manager-factory-ref="entityManagerFactory" 
-		transaction-manager-ref="transactionManager"/> 
-	<!-- Jpa 事务配置 -->
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
-	<!-- Jpa Entity Manager 配置 -->
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="testDataSource" />
-		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
-		<!-- 使用注解形式配置entity -->
-		<property name="packagesToScan" value="edu.keith.mvc" />
-		<property name="jpaProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.max_fetch_depth">3</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.jdbc.fetch_size">18</prop>
-				<prop key="hibernate.jdbc.batch_size">10</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.format_sql">false</prop>
-			</props>
-		</property>
-	</bean>
-
 	<!-- 数据源配置 -->
 	<bean id="testDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.logicalcobwebs.proxool.ProxoolDriver" />
 		<!-- proxool配置文件中的别名要一致 -->
 		<property name="url" value="proxool.xml-test" />
 	</bean>
-
-	<bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+		<property name="dataSource" ref="testDataSource"></property>
 	</bean>
+	
+<!-- 	<bean id="userDao" class="edu.keith.mvc.dao.impl.UserDaoImpl"></bean> -->
+	
+<!-- 	<import resource="context.xml"/> -->
+	<import resource="classpath:mybatis.xml"/>
+
 </beans>

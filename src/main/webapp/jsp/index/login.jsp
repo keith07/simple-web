@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>login</title>
-<%@ include file="/WEB-INF/layouts/include_js.jsp" %>
+<%@ include file="/WEB-INF/static/include_js.jsp" %>
 </head>
 <body>
 	<div class="form" id="loginWrap">

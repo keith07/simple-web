@@ -6,20 +6,20 @@ import edu.keith.mvc.entity.UserInfo;
 public interface IUserService {
 
 	/**
-	 * ×¢²á
+	 * æ³¨å†Œ
 	 * @param user
 	 * @return
 	 */
 	public UserInfo regist(UserBean user);
 	/**
-	 * µÇÂ¼
+	 * ç™»å½•
 	 * @param userName
 	 * @param userPass
 	 * @return
 	 */
 	public UserInfo login(String userName,String userPass);
 	/**
-	 * ÓÃ»§ÃûĞ£Ñé
+	 * ç”¨æˆ·åæ ¡éªŒ
 	 * @param userName
 	 * @return
 	 */

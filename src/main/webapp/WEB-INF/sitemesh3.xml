@@ -8,8 +8,9 @@
 	<!-- 默认装饰器，当下面的路径都不匹配时，启用该装饰器进行装饰 -->
 	<mapping decorator="/WEB-INF/layouts/default.jsp"/>
 	
+	
 	<!-- 对不同的路径，启用不同的装饰器 -->
-<!-- 	<mapping path="/index/*" decorator="/another-decorator.html"/> -->
+	<mapping path="/main/*" decorator="/WEB-INF/layouts/bui.jsp"/>
 <!-- 	<mapping path="/*.special.jsp" decorator="/special-decorator.html"/> -->
 
 	<!-- 对同一路径，启用多个装饰器 -->
@@ -21,6 +22,8 @@
 <!-- 	</mapping> -->
 
 	<!-- 排除，不进行装饰的路径 -->
+	<mapping path="/jsp/index/login.jsp" exclue="true" />
+	<mapping path="/jsp/index/regist.jsp" exclue="true" />
 <!-- 	<mapping path="/javadoc/*" exclue="true"/> -->
 <!-- 	<mapping path="/brochures/*" exclue="true"/> -->
 	

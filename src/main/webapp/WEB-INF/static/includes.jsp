@@ -8,3 +8,7 @@
 <script src="${ctx}/static/js/dev/jquery.tablesorter.widgets.js"></script>
 <script src="${ctx}/static/js/dev/jquery.tablesorter.combined.js"></script>
 <script src="${ctx}/static/js/sc/jquery-accordion-menu.js"></script>
+<script src="${ctx}/static/js/dev/angular-1.4.js"></script>
+
+<link rel="stylesheet" type="text/css" href="${ctx}/static/css/style.css" />
+<link rel="stylesheet" type="text/css" href="${ctx}/static/css/theme.blue.css" />

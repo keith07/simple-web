@@ -43,7 +43,7 @@ public class BasicController {
 	
 	@RequestMapping("/index")
 	public String index(){
-		return "/index/index";
+		return "/index/bui";
 	}
 	
 	@RequestMapping("/doRegist")

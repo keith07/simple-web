@@ -6,4 +6,8 @@
 		<property name="mapperInterface" value="edu.keith.mvc.dao.UserDao"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
+	<bean name="goodsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="edu.keith.mvc.goods.dao.GoodsDao"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
 </beans>

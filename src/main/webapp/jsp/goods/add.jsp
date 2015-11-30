@@ -19,7 +19,7 @@
 			<span class="error" ng-show="form.goodsName.$error.exist ">已存在</span>
 		</div>
 		<div class="row">
-			<label>关键词（通过空格分割）：</label>
+			<label title="通过空格分割">关键词：</label>
 			<input ng-model="goods.keyWord" name="name" type="text">
 		</div>
 		<div class="row">
@@ -27,16 +27,12 @@
 			<input ng-model="goods.describe" name="name" type="text">
 		</div>
 		
-		<input type="submit" name="提交">
+		<input type="submit" ng-disabled="form.$invalid" value="提交">
 	</form>
 	<script type="text/javascript">
 		var app = angular.module('goodsAddApp',[]);
 		app.controller('goodsController',function($scope,$http){
 			$scope.processForm = function(isValid){
-				if(!isValid){
-					alert("表单校验失败");
-					return;
-				}
 				$http({
 					method:'POST',
 					url:'save',

@@ -6,19 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Welcome Keith</title>
-<%@ include file="/WEB-INF/layouts/include_js.jsp" %>
+<title>login</title>
+<%@ include file="/WEB-INF/static/includes.jsp" %>
 </head>
-<%
-Connection connection = null;
-try {
-Class.forName("org.logicalcobwebs.proxool.ProxoolDriver");
-connection = DriverManager.getConnection("proxool.xml-test");
-} catch (Exception e) {
-out.println(e);
-}
-out.println("ok");
-%> 
 <body>
 	<div class="form" id="loginWrap">
 		<form action="${ctx}/main/doLogin" method="post">

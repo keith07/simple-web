@@ -2,17 +2,8 @@ package edu.keith.mvc.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import edu.keith.mvc.bean.UserBean;
 
-@Entity
-@Table(name="user_info")
 public class UserInfo implements Serializable {
 
 	/**
@@ -30,20 +21,14 @@ public class UserInfo implements Serializable {
 		this.setActived(true);
 	}
 	
-	@Id  
-    @GeneratedValue(strategy = GenerationType.AUTO) 
-	private String sid;
-	@Column(name="user_name")
+	private int sid;
 	private String userName;
-	@Column(name="user_pass")
 	private String userPass;
-//	@Column(name="is_actived")
-//	@org.hibernate.annotations.Type(type="yes_no")
 	private boolean isActived;
-	public String getSid() {
+	public int getSid() {
 		return sid;
 	}
-	public void setSid(String sid) {
+	public void setSid(int sid) {
 		this.sid = sid;
 	}
 	public String getUserName() {

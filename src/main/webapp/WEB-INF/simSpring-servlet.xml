@@ -8,6 +8,7 @@
     http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 	<!-- 声明静态资源的访问 -->
 	<mvc:resources mapping="/static/**" location="/static/"/>
+	<mvc:resources mapping="/layouts/**" location="/WEB-INF/layouts/"/>
 	<!-- 配置注解驱动 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
 	<!-- 配置注解扫描根路径 -->
@@ -20,40 +21,46 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<!-- jpa支持 -->
-	<jpa:repositories base-package="edu.keith.mvc"
-		entity-manager-factory-ref="entityManagerFactory" 
-		transaction-manager-ref="transactionManager"/> 
-	<!-- Jpa 事务配置 -->
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
-	<!-- Jpa Entity Manager 配置 -->
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="testDataSource" />
-		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
-		<!-- 使用注解形式配置entity -->
-		<property name="packagesToScan" value="edu.keith.mvc" />
-		<property name="jpaProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.max_fetch_depth">3</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.jdbc.fetch_size">18</prop>
-				<prop key="hibernate.jdbc.batch_size">10</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.format_sql">false</prop>
-			</props>
-		</property>
-	</bean>
-
 	<!-- 数据源配置 -->
 	<bean id="testDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.logicalcobwebs.proxool.ProxoolDriver" />
 		<!-- proxool配置文件中的别名要一致 -->
 		<property name="url" value="proxool.xml-test" />
 	</bean>
-
-	<bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:mapper/*.xml</value>
+				<value>classpath:mapper/*/*.xml</value>
+			</list>
+		</property>
+		<property name="dataSource" ref="testDataSource"></property>
 	</bean>
+	
+<!-- 	<bean id="userDao" class="edu.keith.mvc.dao.impl.UserDaoImpl"></bean> -->
+	
+<!-- 	<import resource="context.xml"/> -->
+	<import resource="classpath:mybatis.xml"/>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"></property>
+		<property name="maxUploadSize" value="10485760000"></property>
+		<property name="maxInMemorySize" value="40960"></property>
+	</bean> 
+	
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<!-- 定义默认的异常处理页面，当该异常类型的注册时使用 -->
+		<property name="defaultErrorView" value="/error/0"></property>
+		<!-- 定义异常处理页面用来获取异常信息的变量名，默认名为exception -->
+		<property name="exceptionAttribute" value="ex"></property>
+		<!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 -->
+<!-- 		<property name="exceptionMappings"> -->
+<!-- 			<props> -->
+<!-- 				<prop key="cn.basttg.core.exception.BusinessException">error-business</prop> -->
+<!-- 				<prop key="cn.basttg.core.exception.ParameterException">error-parameter</prop> -->
+<!-- 			</props> -->
+<!-- 		</property> -->
+	</bean>
+
 </beans>

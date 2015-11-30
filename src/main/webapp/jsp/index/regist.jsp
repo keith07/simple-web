@@ -7,11 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Welcome Keith</title>
-<%@ include file="/WEB-INF/layouts/include_js.jsp" %>
+<%@ include file="/WEB-INF/static/includes.jsp" %>
 </head>
 <body>
 	<div class="form" id="loginWrap">
-		<form action="${ctx}/main/doRegist" method="post">
+		<form action="${ctx}/main/doRegist" enctype="multipart/form-data" method="post">
 			<div class="field">
 				<span class="label">userName:</span>
 				<input type="text" id="userName" name="userName">
@@ -22,7 +22,11 @@
 			</div>
 			<div class="field">
 				<span class="label">confirm userPass:</span>
-				<input type="password" id="userPass2" name="userPass2">
+				<input type="password" id="confirmPass" name="confirmPass">
+			</div>
+			<div class="field">
+				<span class="label">pic:</span>
+				<input type="file" id="pic" name="pic">
 			</div>
 			<div>
 				<input type="submit" name="submit" value="submit">

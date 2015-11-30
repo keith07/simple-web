@@ -1,9 +1,13 @@
 package edu.keith.mvc.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
 import edu.keith.mvc.entity.UserInfo;
 
-public interface UserDao extends JpaRepository<UserInfo, Integer> {
-
+public interface UserDao{
+	public UserInfo get(int sid);
+	
+	public List<UserInfo> findByName(String userName);
+	
+	public int save(UserInfo user);
 }

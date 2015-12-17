@@ -2,7 +2,7 @@
 <connection-pool>
 	<proxool>
 		<alias>xml-test</alias>
-		<driver-url>jdbc:mysql://192.168.1.21:3306/simpleweb?characterEncoding=UTF-8&amp;useUnicode=true&amp;autoReconnect=true</driver-url>
+		<driver-url>jdbc:mysql://192.168.5.77:3306/simpleweb?characterEncoding=UTF-8&amp;useUnicode=true&amp;autoReconnect=true</driver-url>
 		<driver-class>org.gjt.mm.mysql.Driver</driver-class>
 		<driver-properties>
 			<property name="user" value="root"/>

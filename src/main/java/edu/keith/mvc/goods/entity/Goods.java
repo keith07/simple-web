@@ -37,4 +37,19 @@ public class Goods implements Serializable {
 	public void setSelfDescribe(String selfDescribe) {
 		this.selfDescribe = selfDescribe;
 	}
+	
+	public Goods(String value){
+		this.sid = Integer.valueOf(value.substring(value.indexOf("sid")+"sid".length()+1,value.indexOf("&", value.indexOf("sid"))));
+		this.keyWord = value.substring(value.indexOf("keyWord")+"keyWord".length()+1,value.indexOf("&", value.indexOf("keyWord")));
+		this.name = value.substring(value.indexOf("name")+"name".length()+1,value.indexOf("&", value.indexOf("name")));
+		this.selfDescribe = value.substring(value.indexOf("selfDescribe")+"selfDescribe".length()+1);
+	}
+	
+	public Goods(){}
+	
+	public String toString(){
+		StringBuilder sb = new StringBuilder("sid:");
+		sb.append(sid).append("&keyWord:").append(keyWord).append("&name:").append(name).append("&selfDescribe:").append(selfDescribe);
+		return sb.toString();
+	}
 }

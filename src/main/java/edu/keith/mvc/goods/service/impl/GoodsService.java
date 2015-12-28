@@ -2,7 +2,9 @@ package edu.keith.mvc.goods.service.impl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import edu.keith.mvc.goods.dao.GoodsDao;
@@ -14,6 +16,9 @@ public class GoodsService implements IGoodsService {
 
 	@Autowired
 	private GoodsDao dao;
+//	@Autowired
+//	private RedisGoodsDao rDao;
+	Logger log = Logger.getLogger(GoodsService.class);
 	@Override
 	public int save(Goods goods) {
 		return dao.save(goods);
@@ -30,7 +35,15 @@ public class GoodsService implements IGoodsService {
 	}
 
 	@Override
-	public Goods get(int sid) {
+	@Cacheable(value = "default",key="'edu.keith.mvc.goods.entity.Goods#'+#sid")
+	public Goods get(String sid) {
+//		Goods goods = rDao.get(sid);
+//		if(goods == null){
+//			log.info("goods with id {"+sid+"} not found in redis");
+//			goods = dao.get(sid);
+//			rDao.put(goods);
+//		}
+		
 		return dao.get(sid);
 	}
 

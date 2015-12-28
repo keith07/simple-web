@@ -34,5 +34,5 @@ public interface IGoodsService {
 	 * @param sid
 	 * @return
 	 */
-	public Goods get(int sid);
+	public Goods get(String sid);
 }

@@ -7,9 +7,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,13 +29,19 @@ public class GoodsController {
 	@RequestMapping("/list")
 	public String toList(Map<String,Object> model,HttpServletRequest request){
 		List<Goods> _goods = service.getAll();
-		String goodses = new JSONArray().fromObject(_goods).toString();
+		String goodses = JSONArray.fromObject(_goods).toString();
 		model.put("goodses", goodses);
 		return "/goods/overview";
 	}
 	@RequestMapping("/add")
 	public String toAdd(){
 		return "/goods/add";
+	}
+	@RequestMapping("/{sid}/view")
+	public String toView(Map<String,Object> model,@PathVariable int sid){
+		Goods _goods = service.get(String.valueOf(sid));
+		model.put("goods", JSONObject.fromObject(_goods).toString());
+		return "/goods/view";
 	}
 	@RequestMapping("/save")
 	@ResponseBody

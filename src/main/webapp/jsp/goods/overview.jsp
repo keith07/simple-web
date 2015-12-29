@@ -17,6 +17,7 @@
 				<th>商品名称</th>
 				<th>关键词</th>
 				<th>商品简介</th>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,16 +25,22 @@
 				<td>{{goods.name}}</td>
 				<td>{{goods.keyWord}}</td>
 				<td>{{goods.selfDescribe}}</td>
+				<td><input type="button" ng-click="view(goods.sid)"></td>
 			</tr>
 		</tbody>
 	</table>
 	<script type="text/javascript">
 	var app = angular.module('goodsApp',[]);
 	app.controller('goodsController',function($scope,$http){
-		$scope.goodses=JSON.parse('${goodses}')
+		$scope.goodses=JSON.parse('${goodses}');
+		$scope.view = function(id){
+			alert(id);
+			$scope.open('${ctx}/goods/'+id+'/view');
+		}
 	});
 	$(document).ready(function () {
 		$("#myTable").tablesorter({theme:'blue',widgets:['zebra']});
+		
 	});
 	</script>
 </body>

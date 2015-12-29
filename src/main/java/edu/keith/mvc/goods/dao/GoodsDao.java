@@ -34,5 +34,5 @@ public interface GoodsDao {
 	 * @param sid
 	 * @return
 	 */
-	public Goods get(int sid);
+	public Goods get(String sid);
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,10 @@ public class GoodsService implements IGoodsService {
 //	private RedisGoodsDao rDao;
 	Logger log = Logger.getLogger(GoodsService.class);
 	@Override
+	@CachePut(value = "default",key="'edu.keith.mvc.goods.entity.Goods#'+#goods.getSid()")
 	public int save(Goods goods) {
+		if(goods.getSid() > 0)
+			return dao.update(goods);
 		return dao.save(goods);
 	}
 
@@ -37,19 +42,18 @@ public class GoodsService implements IGoodsService {
 	@Override
 	@Cacheable(value = "default",key="'edu.keith.mvc.goods.entity.Goods#'+#sid")
 	public Goods get(String sid) {
-//		Goods goods = rDao.get(sid);
-//		if(goods == null){
-//			log.info("goods with id {"+sid+"} not found in redis");
-//			goods = dao.get(sid);
-//			rDao.put(goods);
-//		}
-		
 		return dao.get(sid);
 	}
 
 	@Override
 	public boolean isNameExist(String name) {
 		return dao.findByName(name).size() > 0;
+	}
+
+	@Override
+	@CacheEvict(value = "default",key="'edu.keith.mvc.goods.entity.Goods#'+#sid")
+	public int delete(String sid) {
+		return dao.delete(sid);
 	}
 
 }

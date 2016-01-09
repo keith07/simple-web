@@ -13,6 +13,12 @@ public interface GoodsDao {
 	 */
 	public int save(Goods goods);
 	/**
+	 * 更新
+	 * @param goods
+	 * @return
+	 */
+	public int update(Goods goods);
+	/**
 	 * 获取全部
 	 * @return
 	 */
@@ -35,4 +41,10 @@ public interface GoodsDao {
 	 * @return
 	 */
 	public Goods get(String sid);
+	/**
+	 * 根据id删除
+	 * @param sid
+	 * @return
+	 */
+	public int delete(String sid);
 }

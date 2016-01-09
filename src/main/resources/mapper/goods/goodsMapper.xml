@@ -14,20 +14,19 @@
 		select sid,name,key_word keyWord,self_describe selfDescribe from tb_goods where name = #{userName};
 	</select>
 	<insert id="save" parameterType="edu.keith.mvc.goods.entity.Goods" useGeneratedKeys="true" keyProperty="sid">
-<!-- 		<choose> -->
-<!-- 			<when test="entity.sid == null"> -->
-				insert into tb_goods(name,key_word,self_describe)
-					values(#{name,jdbcType=VARCHAR},
-						#{keyWord,jdbcType=VARCHAR},
-						#{selfDescribe,jdbcType=VARCHAR}
-					);
-<!-- 			</when> -->
-<!-- 			<otherwise> -->
-<!-- 				update tb_goods set name=#{name,jdbcType=VARCHAR}, -->
-<!-- 					key_word=#{keyWord,jdbcType=VARCHAR}, -->
-<!-- 					describe=#{describe,jdbcType=VARCHAR} -->
-<!-- 					 where sid = #{sid,jdbcType=BIGINT}); -->
-<!-- 			</otherwise> -->
-<!-- 		</choose> -->
+		insert into tb_goods(name,key_word,self_describe)
+			values(#{name,jdbcType=VARCHAR},
+				#{keyWord,jdbcType=VARCHAR},
+				#{selfDescribe,jdbcType=VARCHAR}
+			);
 	</insert>
+	<update id="update" parameterType="edu.keith.mvc.goods.entity.Goods">
+		update tb_goods set name=#{name,jdbcType=VARCHAR},
+			key_word=#{keyWord,jdbcType=VARCHAR},
+			self_describe=#{selfDescribe,jdbcType=VARCHAR}
+			 where sid = #{sid,jdbcType=BIGINT};
+	</update>
+	<delete id="delete" parameterType="String">
+		delete from tb_goods where sid =  #{id};
+	</delete>
 </mapper>

@@ -13,6 +13,12 @@ public interface IGoodsService {
 	 */
 	public int save(Goods goods);
 	/**
+	 * 删除
+	 * @param sid
+	 * @return
+	 */
+	public int delete(String sid);
+	/**
 	 * 获取全部
 	 * @return
 	 */

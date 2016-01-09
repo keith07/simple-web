@@ -11,6 +11,7 @@
 <body ng-app="goodsAddApp" ng-controller="goodsController">
 	<a href="${ctx}/goods/list" >返回列表</a>
 	<form name="form" ng-submit="processForm()">
+		<input ng-model="goods.sid" type="hidden">
 		<div class="row">
 			<label for="goodsName">商品名称：</label>
 			<input ng-model="goods.name" name="goodsName" type="text" ng-minlength="3" required name-validation>
@@ -20,11 +21,11 @@
 		</div>
 		<div class="row">
 			<label title="通过空格分割">关键词：</label>
-			<input ng-model="goods.keyWord" name="name" type="text">
+			<input ng-model="goods.keyWord" name="keyWord" type="text">
 		</div>
 		<div class="row">
 			<label>商品简介：</label>
-			<input ng-model="goods.describe" name="name" type="text">
+			<input ng-model="goods.selfDescribe" name="describe" type="text">
 		</div>
 		
 		<input type="submit" ng-disabled="form.$invalid" value="提交">
@@ -32,6 +33,7 @@
 	<script type="text/javascript">
 		var app = angular.module('goodsAddApp',[]);
 		app.controller('goodsController',function($scope,$http){
+			$scope.goods=JSON.parse('${goods}');
 			$scope.processForm = function(isValid){
 				$http({
 					method:'POST',
@@ -44,6 +46,8 @@
 						$scope.errorName = data.errors.name;
 					}else{
 						$scope.message = data.message;
+						alert("保存成功");
+						window.location.href='${ctx}/goods/list';
 					}
 				})
 			};

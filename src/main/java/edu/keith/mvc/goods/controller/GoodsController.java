@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.keith.mvc.goods.entity.Goods;
@@ -33,15 +34,23 @@ public class GoodsController {
 		model.put("goodses", goodses);
 		return "/goods/overview";
 	}
-	@RequestMapping("/add")
-	public String toAdd(){
-		return "/goods/add";
+	@RequestMapping(value="/{sid}",method=RequestMethod.DELETE)
+	@ResponseBody
+	public Map<String,Object> delete(@PathVariable String sid,Map<String,Object> model){
+		Map<String,Object> result = new HashMap<String,Object>();
+		int r = service.delete(sid);
+		if(r > 0){
+			result.put("success", true);
+		}else{
+			result.put("success", false);
+		}
+		return result;
 	}
-	@RequestMapping("/{sid}/view")
+	@RequestMapping(value="/{sid}",method=RequestMethod.GET)
 	public String toView(Map<String,Object> model,@PathVariable int sid){
 		Goods _goods = service.get(String.valueOf(sid));
 		model.put("goods", JSONObject.fromObject(_goods).toString());
-		return "/goods/view";
+		return "/goods/modification";
 	}
 	@RequestMapping("/save")
 	@ResponseBody

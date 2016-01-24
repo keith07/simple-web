@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 import org.elasticsearch.action.get.GetResponse;
+import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
@@ -24,15 +25,15 @@ public class BasicClient {
 				.put("client.transport.ping_timeout", "20s")
 				.put("client.transport.nodes_sampler_interval","20s")
 				.put("client.transport.sniff", true)
-				.put("cluster.name", "name of node").build();
+				.put("cluster.name", "my-application").build();
 		client = TransportClient.builder().settings(settings).build();
 		client.addTransportAddress(new InetSocketTransportAddress(
-				new InetSocketAddress("192.168.5.77", 9300)));
+				new InetSocketAddress("192.168.1.41", 9300)));
 	}
 
 	public void createIndex(String index,String type,String id) throws IOException {
-		IndexResponse response = client
-				.prepareIndex(index,type,id)
+		IndexRequestBuilder requestBuilder = client.prepareIndex(index,type,id).setRefresh(true);
+		IndexResponse response = requestBuilder
 				.setSource(
 						XContentFactory.jsonBuilder().startObject()
 								.field("author", "569874")
@@ -65,14 +66,15 @@ public class BasicClient {
 		return response;
 	}
 	
-	public static void main(String[] args){
+	public static void main(String[] args) throws IOException{
 		BasicClient client = new BasicClient();
 		client.doConnect();
 		String index = "comment_index";
 		String type = "comment_ugc";
 		String id = "comment_123674";
-//		String result = client.getById(index, type,id);
-		String result = client.getById("megacorp", "employee","2");
+//		client.createIndex(index, type, id);
+		String result = client.getById(index, type,id);
+//		String result = client.getById("megacorp", "employee","2");
 		System.out.println(result);
 	}
 }

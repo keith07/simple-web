@@ -9,31 +9,49 @@
 <%@ include file="/WEB-INF/static/includes.jsp" %>
 </head>
 <body ng-app="goodsAddApp" ng-controller="goodsController">
-	<a href="${ctx}/goods/list" >返回列表</a>
-	<form name="form" ng-submit="processForm()">
-		<input ng-model="goods.sid" type="hidden">
-		<div class="row">
-			<label for="goodsName">商品名称：</label>
-			<input ng-model="goods.name" name="goodsName" type="text" ng-minlength="3" required name-validation>
-			<span class="error" ng-show="form.goodsName.$error.required ">不能为空</span>
-			<span class="error" ng-show="form.goodsName.$error.minlength ">长度不足3位</span>
-			<span class="error" ng-show="form.goodsName.$error.exist ">已存在</span>
-		</div>
-		<div class="row">
-			<label title="通过空格分割">关键词：</label>
-			<input ng-model="goods.keyWord" name="keyWord" type="text">
-		</div>
-		<div class="row">
-			<label>商品简介：</label>
-			<input ng-model="goods.selfDescribe" name="describe" type="text">
-		</div>
-		
-		<input type="submit" ng-disabled="form.$invalid" value="提交">
-	</form>
+	<div class="ibox-title">
+		<button id="back" class="btn btn-primary " type="button"><i class="glyphicon glyphicon-chevron-left"></i>返回列表</button>
+	</div>
+	<div class="ibox-content">
+		<form name="form" class="form-horizontal" ng-submit="processForm()">
+			<input ng-model="goods.sid" type="hidden">
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="goodsName">商品名称：</label>
+				<div class="col-sm-10">
+					<input ng-model="goods.name" name="goodsName" type="text" class="form-control"
+						 ng-minlength="3" required name-validation ng-value="ccc">
+					<span class="error" ng-show="form.goodsName.$error.required ">不能为空</span>
+					<span class="error" ng-show="form.goodsName.$error.minlength ">长度不足3位</span>
+					<span class="error" ng-show="form.goodsName.$error.exist ">已存在</span>
+				</div>
+			</div>
+			<div class="hr-line-dashed"></div>
+			<div class="form-group">
+				<label  class="col-sm-2 control-label" title="通过空格分割">关键词：</label>
+				<div class="col-sm-10">
+					<input ng-model="goods.keyWord" class="form-control" name="keyWord" type="text">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">商品简介：</label>
+				<div class="col-sm-10">
+					<input ng-model="goods.selfDescribe" class="form-control" name="describe" type="text">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-4 col-sm-offset-2">
+					<button class="btn btn-primary" ng-disabled="form.$invalid" type="submit">保存内容</button>
+					<button class="btn btn-white reset" type="button" ng-click="resetWithCancel()">取消</button>
+				</div>
+			</div>
+		</form>
+	</div>
 	<script type="text/javascript">
 		var app = angular.module('goodsAddApp',[]);
 		app.controller('goodsController',function($scope,$http){
 			$scope.goods=JSON.parse('${goods}');
+			//拷贝一份，用于重置
+			$scope.initValue=angular.copy($scope.goods);
 			$scope.processForm = function(isValid){
 				$http({
 					method:'POST',
@@ -51,6 +69,11 @@
 					}
 				})
 			};
+			$scope.resetWithCancel = function(e) {
+				//重置为编辑前的值
+				$scope.goods=angular.copy($scope.initValue);
+			};
+
 		});
 		//后台校验名称是否重复
 		app.directive('nameValidation', function($http) {
@@ -66,6 +89,11 @@
 				}
 			}
 		});
+		$(document).ready(function(){
+			$('#back').on('click',function(){
+				window.location.href='${ctx}/goods/list';
+			});
+		})
 	</script>
 </body>
 </html>

@@ -116,3 +116,9 @@ ul.foldingMenu ul.submenu a{background:#383838;border-left:5px solid #383838;pad
 ul.foldingMenu ul.submenu ul.submenu a{padding-left:45px;}
 ul.foldingMenu ul.submenu a:hover{border-left:5px solid #DA4453;}
 ul.foldingMenu a.opened > span.submenu-indicator{transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-webkit-transform:rotate(45deg);-o-transform:rotate(45deg);}
+
+.ibox-title {-moz-border-bottom-colors: none;-moz-border-left-colors: none;-moz-border-right-colors: none;-moz-border-top-colors: none;background-color: #ffffff;border-color: #e7eaec;border-image: none;border-style: solid solid none;border-width: 4px 0px 0;color: inherit;margin-bottom: 0;padding: 14px 15px 7px;min-height: 48px;}
+.ibox-content{background-color: #ffffff;color: inherit;padding: 15px 20px 20px 20px; border-color: #e7eaec;border-image: none;border-style: solid solid none;border-width: 1px 0px;}
+.wrapper{background-color:#f3f3f4}
+.error{color:#a94442}
+.ng-invalid{border-color:#ed5565}

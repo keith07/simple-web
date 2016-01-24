@@ -22,7 +22,7 @@ public class GoodsService implements IGoodsService {
 //	private RedisGoodsDao rDao;
 	Logger log = Logger.getLogger(GoodsService.class);
 	@Override
-	@CachePut(value = "default",key="'edu.keith.mvc.goods.entity.Goods#'+#goods.getSid()")
+	@CachePut(value = "default",key="'edu.keith.mvc.goods.entity.Goods$'+#goods.getSid()")
 	public int save(Goods goods) {
 		if(goods.getSid() > 0)
 			return dao.update(goods);
@@ -40,7 +40,7 @@ public class GoodsService implements IGoodsService {
 	}
 
 	@Override
-	@Cacheable(value = "default",key="'edu.keith.mvc.goods.entity.Goods#'+#sid")
+	@Cacheable(value = "default",key="'edu.keith.mvc.goods.entity.Goods$'+#sid")
 	public Goods get(String sid) {
 		return dao.get(sid);
 	}
@@ -51,7 +51,7 @@ public class GoodsService implements IGoodsService {
 	}
 
 	@Override
-	@CacheEvict(value = "default",key="'edu.keith.mvc.goods.entity.Goods#'+#sid")
+	@CacheEvict(value = "default",key="'edu.keith.mvc.goods.entity.Goods$'+#sid")
 	public int delete(String sid) {
 		return dao.delete(sid);
 	}

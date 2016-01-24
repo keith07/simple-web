@@ -22,7 +22,7 @@ public class RunnableCallable {
 
 	public static void main(String args[]) throws InterruptedException, ExecutionException{
 		RunnableCallable rc = new RunnableCallable();
-		SimpleBean bean = rc.new SimpleBean();
+		final SimpleBean bean = rc.new SimpleBean();
 		FutureTask<SimpleBean> ft1 = new FutureTask<SimpleBean>(new Runnable(){
 
 			@Override
@@ -89,7 +89,7 @@ public class RunnableCallable {
 			}
 
 			@Override
-			public <T> Future<T> submit(Callable<T> task) {
+			public <T> Future<T> submit(final Callable<T> task) {
 				// TODO Auto-generated method stub
 				return new Future<T>(){
 

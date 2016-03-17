@@ -9,6 +9,7 @@
 	<packaging>war</packaging>
 	<properties>
 		<es.version>2.1.1</es.version>
+		<hadoop.version>2.7.2</hadoop.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -183,7 +184,8 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.8</version>
-		</dependency>		<dependency>
+		</dependency>		
+		<dependency>
 			<groupId>org.elasticsearch</groupId>
 			<artifactId>elasticsearch</artifactId>
 			<version>${es.version}</version>
@@ -199,6 +201,24 @@
 			<artifactId>poi</artifactId>
 			<version>3.13</version>
 		</dependency>
+		
+		<!-- hadoop -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.hadoop</groupId> -->
+<!-- 			<artifactId>hadoop-common</artifactId> -->
+<!-- 			<version>${hadoop.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.hadoop</groupId> -->
+<!-- 			<artifactId>hadoop-hdfs</artifactId> -->
+<!-- 			<version>${hadoop.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.hadoop</groupId> -->
+<!-- 			<artifactId>hadoop-client</artifactId> -->
+<!-- 			<version>${hadoop.version}</version> -->
+<!-- 		</dependency> -->
+		
 	</dependencies>
 	<build>
 		<plugins>

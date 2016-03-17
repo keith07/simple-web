@@ -1,31 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.sql.*"%>
+	pageEncoding="UTF-8" import="java.sql.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>login</title>
-<%@ include file="/WEB-INF/static/includes.jsp" %>
+<%@ include file="/WEB-INF/static/includes.jsp"%>
 </head>
 <body>
-	<div class="form" id="loginWrap">
-		<form action="${ctx}/main/doLogin" method="post">
-			<div class="field">
-				<span class="label">userName:</span>
-				<input type="text" id="userName" name="userName">
-			</div>
-			<div class="field">
-				<span class="label">userPass:</span>
-				<input type="password" id="userPass" name="userPass">
-			</div>
+	<div class="middle-box text-center loginscreen  animated fadeInDown">
+		<div>
 			<div>
-				<input type="submit" name="submit" value="submit">
-				<input type="reset" name="reset" value="reset">
-				<input type="button" value="regist" onclick="regist()">
+				<h1 class="logo-name">H+</h1>
 			</div>
-		</form>
+			<h3>欢迎使用 H+</h3>
+			<form class="m-t" role="form" action="${ctx}/main/doLogin" method="post">
+				<div class="form-group">
+					<input type="text" id="userName" name="userName" class="form-control" 
+						placeholder="用户名" required="">
+				</div>
+				<div class="form-group">
+					<input type="password" id="userPass" name="userPass" class="form-control" 
+						placeholder="密码" required="">
+				</div>
+				<button type="submit" class="btn btn-primary block full-width m-b">登录</button>
+				<p class="text-muted text-center">
+					<a href="login.html#"><small>忘记密码了？</small></a> | <a
+						href="${ctx}/main/regist">注册一个新账号</a>
+				</p>
+
+			</form>
+		</div>
 	</div>
 	<script type="text/javascript">
 		function regist(){

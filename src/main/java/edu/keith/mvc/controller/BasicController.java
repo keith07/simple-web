@@ -59,7 +59,7 @@ public class BasicController {
 		localFile.mkdirs();
 		try {
 			sourceFile.transferTo(localFile);
-		} catch (IllegalStateException | IOException e) {
+		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -62,6 +62,8 @@ public class BasicController {
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return "redirect:/main/index";
 	}

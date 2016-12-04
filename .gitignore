@@ -1,0 +1,17 @@
+/target/
+
+.settings/org.eclipse.wst.ws.service.policy.prefs
+.settings/org.eclipse.wst.jsdt.ui.superType.container
+.settings/org.eclipse.wst.common.component
+.classpath
+.project
+.settings/org.eclipse.jdt.core.prefs
+.settings/.jsdtscope
+.settings/org.eclipse.jst.j2ee.ejb.annotations.xdoclet.prefs
+.settings/org.eclipse.ltk.core.refactoring.prefs
+.settings/org.eclipse.m2e.core.prefs
+.settings/org.eclipse.wst.validation.prefs
+.settings/org.eclipse.wst.jsdt.ui.superType.name
+.settings/org.eclipse.wst.common.project.facet.core.xml
+src/main/webapp/WEB-INF/proxool.xml
+src/main/webapp/WEB-INF/proxool.xml

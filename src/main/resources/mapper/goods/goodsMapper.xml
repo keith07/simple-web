@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.keith.mvc.goods.dao.GoodsDao">
+	<select id="get" parameterType="String" resultType="edu.keith.mvc.goods.entity.Goods">
+		select sid,name,key_word keyWord,self_describe selfDescribe from tb_goods where sid = #{id}
+	</select>
+	<select id="getAll" resultType="edu.keith.mvc.goods.entity.Goods">
+		select sid,name,key_word keyWord,self_describe selfDescribe from tb_goods;
+	</select>
+	<select id="searchByName" parameterType="String" resultType="edu.keith.mvc.goods.entity.Goods">
+		select sid,name,key_word keyWord,self_describe selfDescribe from tb_goods where name like '%#{userName}%';
+	</select>
+	<select id="findByName" parameterType="String" resultType="edu.keith.mvc.goods.entity.Goods">
+		select sid,name,key_word keyWord,self_describe selfDescribe from tb_goods where name = #{userName};
+	</select>
+	<insert id="save" parameterType="edu.keith.mvc.goods.entity.Goods" useGeneratedKeys="true" keyProperty="sid">
+		insert into tb_goods(name,key_word,self_describe)
+			values(#{name,jdbcType=VARCHAR},
+				#{keyWord,jdbcType=VARCHAR},
+				#{selfDescribe,jdbcType=VARCHAR}
+			);
+	</insert>
+	<update id="update" parameterType="edu.keith.mvc.goods.entity.Goods">
+		update tb_goods set name=#{name,jdbcType=VARCHAR},
+			key_word=#{keyWord,jdbcType=VARCHAR},
+			self_describe=#{selfDescribe,jdbcType=VARCHAR}
+			 where sid = #{sid,jdbcType=BIGINT};
+	</update>
+	<delete id="delete" parameterType="String">
+		delete from tb_goods where sid =  #{id};
+	</delete>
+</mapper>

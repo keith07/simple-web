@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.keith.mvc.dao.UserDao">
+	<select id="get" parameterType="int" resultType="edu.keith.mvc.entity.UserInfo">
+		select * from USER_INFO where SID = #{id}
+	</select>
+	<select id="findByName" parameterType="String" resultType="edu.keith.mvc.entity.UserInfo">
+		select SID,USER_NAME userName,USER_PASS userPass,IS_ACTIVED isActived from USER_INFO where USER_NAME = #{userName}
+	</select>
+	<insert id="save" parameterType="edu.keith.mvc.entity.UserInfo" useGeneratedKeys="true" keyProperty="SID">
+		insert into USER_INFO(USER_NAME,USER_PASS,IS_ACTIVED)
+		 values(#{userName,jdbcType=VARCHAR},
+		 	#{userPass,jdbcType=VARCHAR},
+		 	#{isActived,jdbcType=VARCHAR}
+		 );
+	</insert>
+</mapper>

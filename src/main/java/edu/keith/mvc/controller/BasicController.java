@@ -38,6 +38,7 @@ public class BasicController {
 	
 	@RequestMapping("/regist")
 	public String regist(){
+		service.testSaveOrUpdate();
 		return "/index/regist";
 	}
 	

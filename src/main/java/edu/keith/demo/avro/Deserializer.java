@@ -15,20 +15,20 @@ import java.io.IOException;
  */
 public class Deserializer {
 
-	public static void specificDeserialize() throws IOException {
-		// Deserialize Users from disk
-		DatumReader<User> userDatumReader = new SpecificDatumReader<User>(User.class);
-		DataFileReader<User> dataFileReader = new DataFileReader<User>(new File("users.avro"), userDatumReader);
-		User user = null;
-		while (dataFileReader.hasNext()) {
-			// Reuse user object by passing it to next(). This saves us from
-			// allocating and garbage collecting many objects for files with
-			// many items.
-			user = dataFileReader.next(user);
-			System.out.println(user);
-		}
-
-	}
+//	public static void specificDeserialize() throws IOException {
+//		// Deserialize Users from disk
+//		DatumReader<User> userDatumReader = new SpecificDatumReader<User>(User.class);
+//		DataFileReader<User> dataFileReader = new DataFileReader<User>(new File("users.avro"), userDatumReader);
+//		User user = null;
+//		while (dataFileReader.hasNext()) {
+//			// Reuse user object by passing it to next(). This saves us from
+//			// allocating and garbage collecting many objects for files with
+//			// many items.
+//			user = dataFileReader.next(user);
+//			System.out.println(user);
+//		}
+//
+//	}
 
 	public static void customDeserialize() throws IOException {
 		Schema schema = new Schema.Parser().parse(new File("src/main/avro/user.avsc"));

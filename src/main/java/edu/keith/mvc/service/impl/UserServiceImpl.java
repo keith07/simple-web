@@ -2,6 +2,7 @@ package edu.keith.mvc.service.impl;
 
 import java.util.List;
 
+import edu.keith.mvc.dao.ImRecordDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,9 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private UserDao userDao;
+
+	@Autowired
+	private ImRecordDao imRecordDao;
 
 	public UserInfo regist(UserBean userBean) {
 		if(isNameExisted(userBean.getUserName()))
@@ -36,5 +40,11 @@ public class UserServiceImpl implements IUserService {
 			return false;
 		List<UserInfo> user = userDao.findByName(userName);
 		return user.size() > 0;
+	}
+
+	@Override
+	public void testSaveOrUpdate() {
+		imRecordDao.saveOrUpdate(100, 101, 1);
+		imRecordDao.saveOrUpdate(100, 101, 1);
 	}
 }

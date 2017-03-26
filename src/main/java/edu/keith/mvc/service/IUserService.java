@@ -24,4 +24,6 @@ public interface IUserService {
 	 * @return
 	 */
 	public boolean isNameExisted(String userName);
+
+	void testSaveOrUpdate();
 }
